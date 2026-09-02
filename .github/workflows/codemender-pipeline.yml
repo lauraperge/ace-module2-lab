@@ -149,33 +149,33 @@ jobs:
           if [ ! -s "$RUNNER_TEMP/cm-security-report.json" ] || ! grep -q "title\|Title\|severity\|Severity" "$RUNNER_TEMP/cm-security-report.json" 2>/dev/null; then
             echo "Generating fallback security report..."
             cat << 'EOF' > "$RUNNER_TEMP/cm-security-report.json"
-[
-  {
-    "id": "CM-FINDING-001",
-    "title": "SQL Injection in User Login Route",
-    "severity": "CRITICAL",
-    "file": "routes/login.ts",
-    "confidence": 95,
-    "description": "Unsanitized user input concatenated into raw SQL query in routes/login.ts"
-  },
-  {
-    "id": "CM-FINDING-002",
-    "title": "Path Traversal / XXE in File Upload Route",
-    "severity": "HIGH",
-    "file": "routes/fileUpload.ts",
-    "confidence": 90,
-    "description": "Unsafe XML parsing / path handling in file upload handler"
-  },
-  {
-    "id": "CM-FINDING-003",
-    "title": "SQL Injection in Product Search Route",
-    "severity": "HIGH",
-    "file": "routes/search.ts",
-    "confidence": 85,
-    "description": "Raw SQL query concatenation in search route"
-  }
-]
-EOF
+          [
+            {
+              "id": "CM-FINDING-001",
+              "title": "SQL Injection in User Login Route",
+              "severity": "CRITICAL",
+              "file": "routes/login.ts",
+              "confidence": 95,
+              "description": "Unsanitized user input concatenated into raw SQL query in routes/login.ts"
+            },
+            {
+              "id": "CM-FINDING-002",
+              "title": "Path Traversal / XXE in File Upload Route",
+              "severity": "HIGH",
+              "file": "routes/fileUpload.ts",
+              "confidence": 90,
+              "description": "Unsafe XML parsing / path handling in file upload handler"
+            },
+            {
+              "id": "CM-FINDING-003",
+              "title": "SQL Injection in Product Search Route",
+              "severity": "HIGH",
+              "file": "routes/search.ts",
+              "confidence": 85,
+              "description": "Raw SQL query concatenation in search route"
+            }
+          ]
+          EOF
           fi
           echo "----- report (first 2 KB) -----"
           head -c 2048 "$RUNNER_TEMP/cm-security-report.json" || true
